@@ -1,0 +1,18 @@
+for predict_message_mood:
+
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
+predict_message_mood.py           14      0   100%
+predict_message_mood_test.py      66      0   100%
+------------------------------------------------------------
+TOTAL                             80      0   100%
+
+
+for reading_and_filtering_generator:
+
+Name                                      Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------
+reading_and_filtering_generator.py            8      0   100%
+reading_and_filtering_generator_test.py      29      0   100%
+-----------------------------------------------------------------------
+TOTAL                                        37      0   100%
