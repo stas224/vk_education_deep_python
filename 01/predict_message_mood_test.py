@@ -11,13 +11,16 @@ class TestPredictMessageMood(unittest.TestCase):
         self.text = 'test'
 
     def test_predict_res(self):
+        self.assertEqual(type(self.text), str)
         with mock.patch("predict_message_mood.SomeModel.predict") as mock_predict:
             for mock_predict.return_value in (0.2, 0.4, 0.9):
-                self.assertEqual(self.model.predict('test'), mock_predict.return_value)
-                self.assertNotEqual(self.model.predict('test'), 0.1)
+                self.assertEqual(self.text, 'test')
+                self.assertEqual(self.model.predict(self.text), mock_predict.return_value)
+                self.assertNotEqual(self.model.predict(self.text), 0.1)
 
         for _ in range(100):
-            res = self.model.predict('test')
+            self.assertEqual(self.text, 'test')
+            res = self.model.predict(self.text)
             self.assertLessEqual(res, 1)
             self.assertGreaterEqual(res, 0)
 
