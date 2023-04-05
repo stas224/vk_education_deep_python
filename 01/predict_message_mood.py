@@ -18,7 +18,7 @@ def predict_message_mood(message: str = None, model: SomeModel = None,
                          bad_thresholds: float = 0.3,
                          good_thresholds: float = 0.8) -> str:
     if not (isinstance(message, str) and isinstance(model, SomeModel)):
-        raise TypeError("missing 'message' and 'model'")
+        raise TypeError("missing 'message' or 'model'")
     res = model.predict(message)
     if res < bad_thresholds:
         return 'неуд'
