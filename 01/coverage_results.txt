@@ -2,8 +2,8 @@ for predict_message_mood:
 
 Name                                        Stmts   Miss  Cover   Missing
 -------------------------------------------------------------------------
-vk_course\01\predict_message_mood.py           18      1    94%   14
-vk_course\01\predict_message_mood_test.py      91      0   100%
+predict_message_mood.py           18      1    94%   14
+predict_message_mood_test.py      91      0   100%
 -------------------------------------------------------------------------
 TOTAL                                         109      1    99%
 
