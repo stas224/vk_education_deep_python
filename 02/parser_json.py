@@ -12,8 +12,8 @@ def example_function(log: dict):
 def parse_json(json_str: str,
                required_fields: list[str] = None,
                keywords: list[str] = None, *,
-               keyword_callback: Callable) -> bool:
-    if not all((json_str, required_fields, keywords)):
+               keyword_callback: Callable = None) -> bool:
+    if not all((json_str, required_fields, keywords, keyword_callback)):
         return False
 
     json_doc = loads(json_str)
@@ -21,6 +21,7 @@ def parse_json(json_str: str,
     for field in required_fields:
         if field in json_doc:
             for keyword in keywords:
-                if keyword in json_doc[field]:
-                    keyword_callback(field, keyword)
+                for word in json_doc[field].split():
+                    if word == keyword:
+                        keyword_callback(field, keyword)
     return True
