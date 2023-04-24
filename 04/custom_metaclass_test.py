@@ -45,6 +45,11 @@ class TestMetaClassCustom(unittest.TestCase):
         self.assertTrue(hasattr(CustomClass, 'custom_boom'))
         self.assertEqual(self.test_var.custom_boom, 'boom')  # pylint: disable=E1101
 
+    def test_custom_class_test_x(self):
+        self.assertFalse(hasattr(CustomClass, 'test_x'))
+        self.assertTrue(hasattr(CustomClass, 'custom_test_x'))
+        self.assertEqual(CustomClass.custom_test_x, 50)  # pylint: disable=E1101
+
 
 if __name__ == '__main__':
     unittest.main()

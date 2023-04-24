@@ -49,7 +49,7 @@ class HeightDescriptor(BaseDescriptor):
         if not isinstance(field, float):
             raise TypeError('Рост игрока должен быть'
                             ' числом с плавающей точкой в сантиметрах')
-        if field < 0.0:
+        if field <= 0.0:
             raise ValueError('Рост игрока должен быть положительным числом')
 
     def __set__(self, instance, value):

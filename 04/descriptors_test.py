@@ -48,3 +48,39 @@ class TestDescriptor(unittest.TestCase):
         self.assertEqual(player1.number, 12)
         self.assertEqual(player1.position, 'PG')
         self.assertEqual(player1.height, 190.9)
+
+    def test_change_descriptor_fields(self):
+        player = BasketballPlayer(12, 'PG', 190.9)
+
+        player.number = 40
+        self.assertEqual(player.number, 40)
+        with self.assertRaises(expected_exception=TypeError):
+            player.number = '40'
+        with self.assertRaises(expected_exception=ValueError):
+            player.number = 100
+        self.assertEqual(player.number, 40)
+        player.number = 67
+        self.assertEqual(player.number, 67)
+
+        player.position = 'C'
+        self.assertEqual(player.position, 'C')
+        with self.assertRaises(expected_exception=TypeError):
+            player.position = 40
+        with self.assertRaises(expected_exception=ValueError):
+            player.position = 'CG'
+        self.assertEqual(player.position, 'C')
+        player.position = 'SF'
+        self.assertEqual(player.position, 'SF')
+
+        player.height = 194.2
+        self.assertEqual(player.height, 194.2)
+        with self.assertRaises(expected_exception=TypeError):
+            player.height = 12
+        with self.assertRaises(expected_exception=ValueError):
+            player.height = -123.0
+
+        self.assertEqual(player.height, 194.2)
+        player.height = 194.8
+        self.assertEqual(player.height, 194.8)
+
+
