@@ -1,6 +1,7 @@
 Name                 Stmts   Miss  Cover   Missing
 --------------------------------------------------
 customlist.py           44      0   100%
-customlist_test.py     145      0   100%
+customlist_test.py     253      0   100%
 --------------------------------------------------
-TOTAL                  189      0   100%
+TOTAL                  297      0   100%
+
