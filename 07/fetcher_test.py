@@ -22,8 +22,5 @@ class TestUrlsParser(AsyncTestCase):
             await file.write(f'https://en.wikipedia.org/wiki/{3} ')
 
         await fetcher.fetch_batch((2, 'test_urls.txt'))
-            # with open('count_words', 'r', encoding='UTF-8') as f:
-            #     output = f.readlines()
-            # # self.assertEqual(output, self.expected_output_1)
 
 
