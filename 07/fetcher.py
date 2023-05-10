@@ -35,6 +35,7 @@ async def fetch_batch(args):
 
     async with aiofiles.open(args[1], 'r', encoding='UTF-8') as file:
         async for url in file:
+            url = url.strip()
             await queue.put(url)
 
     await queue.join()
