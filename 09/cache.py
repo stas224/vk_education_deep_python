@@ -105,8 +105,8 @@ def functional_test():
     assert cache.get("k3") is None
     assert cache.get("k2") == "2"
     assert cache.get("k1") == "1"
-    cache.set("new_key", "3")
-    cache.set("new_key", "4")
+    cache.set("k4", "3")
+    cache.set("k4", "4")
 
 
 if __name__ == "__main__":

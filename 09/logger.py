@@ -6,15 +6,6 @@ class OptionalFilter(logging.Filter):
         return "cache" not in record.msg
 
 
-def add_stream_handler(logger):
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s\t%(levelname)s\t[stdout]\t%(message)s")
-    stream_handler.setFormatter(formatter)
-    logger.addHandler(stream_handler)
-    return logger
-
-
 def add_filter(logger):
     for handler in logger.handlers:
         handler.addFilter(OptionalFilter())
@@ -29,4 +20,13 @@ def get_logger():
     logger = logging.getLogger("logger")
     logger.setLevel(logging.DEBUG)
     logger.addHandler(file_handler)
+    return logger
+
+
+def add_stream_handler(logger):
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("%(asctime)s\t%(levelname)s\t[stdout]\t%(message)s")
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
     return logger
