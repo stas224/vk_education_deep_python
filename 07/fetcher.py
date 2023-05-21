@@ -1,12 +1,13 @@
+import asyncio
+import sys
+
 import aiohttp
 import aiofiles
-import asyncio
 from bs4 import BeautifulSoup
-import sys
 
 
 async def process_url(response):
-    text = response.text()
+    text = await response.text()
     soup = BeautifulSoup(text, 'html.parser')
     count_words = len(set(soup.get_text().split()))
     async with aiofiles.open('count_words', 'a', encoding='UTF-8') as file:
@@ -42,6 +43,8 @@ async def fetch_batch(args):
 
     for worker in workers:
         worker.cancel()
+
+    await asyncio.gather(*workers, return_exceptions=True)
 
 
 def fetcher():
