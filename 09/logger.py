@@ -3,7 +3,7 @@ import logging
 
 class OptionalFilter(logging.Filter):
     def filter(self, record):
-        return "cache" not in record.msg
+        return "Operation get" not in record.msg
 
 
 def add_filter(logger):
