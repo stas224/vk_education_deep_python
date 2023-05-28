@@ -1,5 +1,5 @@
 import asyncio
-import sys
+import argparse
 
 import aiohttp
 import aiofiles
@@ -26,12 +26,14 @@ async def run_worker(queue):
         url = await queue.get()
         try:
             await fetch_url(url)
+        except Exception as e:
+            print(f'With {url=}: error {e=}')
         finally:
             queue.task_done()
 
 
 async def fetch_batch(args):
-    queue = asyncio.Queue()
+    queue = asyncio.Queue(maxsize=int(args[0]))
     workers = [asyncio.create_task(run_worker(queue)) for _ in range(int(args[0]))]
 
     async with aiofiles.open(args[1], 'r', encoding='UTF-8') as file:
@@ -47,9 +49,17 @@ async def fetch_batch(args):
     await asyncio.gather(*workers, return_exceptions=True)
 
 
+def get_args() -> tuple[int, str]:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", type=int, default=10, help="workers count")
+    parser.add_argument("file", nargs=1)
+    console_args = parser.parse_args()
+    return console_args.c, console_args.file[0]
+
+
 def fetcher():
-    console_args = sys.argv[1:]
-    asyncio.get_event_loop().run_until_complete(fetch_batch(console_args))
+    args = get_args()
+    asyncio.get_event_loop().run_until_complete(fetch_batch(args))
 
 
 if __name__ == "__main__":
